@@ -1,0 +1,40 @@
+<div style="position: relative; max-width: 100%; margin: auto; max-height: 450px;">
+  <div style="display: flex; overflow: hidden; width: 100%; max-height: 450px;">
+    <div *ngFor="let image of images; let i = index" [ngStyle]="{'display': i === currentIndex ? 'block' : 'none', 'width': '100%'}">
+      <img [src]="image" alt="Slide {{ i + 1 }}" style="width: 100%; border-radius: 10px; background-size: cover;">
+    </div>
+  </div>
+  <button (click)="prevSlide()" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; cursor: pointer; padding: 10px; border-radius: 50%; left: 10px;">&#10094;</button>
+  <button (click)="nextSlide()" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; cursor: pointer; padding: 10px; border-radius: 50%; right: 10px;">&#10095;</button>
+</div>
+
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around;">
+    <div style="width: 100%; margin: 20px;text-align: center;align-items: center;background-color: rgba(255, 255, 255, 0.899);border-radius: 10px;padding: 60px;">
+        <h2>product informatique</h2>
+        <h6>kdnn fibif iufizbenf iudfns iudshuisd iusdnsdn sd sdubnsj sjdnkjsd disuubnfj</h6>
+    </div>
+    <div class="row mt-5 mb-5" style="flex-direction: row; flex-wrap: wrap;width: 100%;border: 1px solid rgb(228, 228, 228);border-radius:5%;display: flex;justify-content: space-between;padding: 20px;">
+        <div class="prod" *ngFor="let product of products" style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); text-align: center;">
+            <!-- <img [src]="product.image" alt="{{ product.name }}" style="max-width: 100%; border-radius: 10px;"> -->
+            <ng-container *ngFor="let image of product.images">
+              <img [src]="'http://localhost:3000/multiplefiles/' + image" alt="">
+            </ng-container>
+            <h2 style="font-size: 1.5em; margin: 10px 0;cursor: pointer;" [routerLink]="['/categories','product',product._id]">{{ product.title }}</h2>
+            <!-- <p>{{ product.description }}</p> -->
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p><strong>Price:</strong> ${{ product.pointProduct }}</p>
+          </div>
+    </div>
+   
+  </div>
+  
+
+
+  <style>
+    .prod:hover{
+       padding: 10px;
+       margin: 3px;
+       background-color: #f1f1f1c2;
+    }
+  </style>

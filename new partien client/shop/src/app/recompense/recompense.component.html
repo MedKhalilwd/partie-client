@@ -1,0 +1,36 @@
+<div *ngIf="products.length > 0; else noProducts">
+  <h2>Product List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Point</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>
+          <img [src]="getImageUrl(product.image)" alt="{{ product.name }}" width="100">
+        </td>
+        <td>{{ product.point }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <button 
+            [ngClass]="{'enabled-button': product.point <= pointUser, 'disabled-button': product.point > pointUser}" 
+            [disabled]="product.point > pointUser" 
+            (click)="acheter(product)">
+            Achat
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noProducts>
+  <p>No products available.</p>
+</ng-template>
